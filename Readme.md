@@ -1,79 +1,48 @@
-# Machine virtuelle (VM) à l'IUT
+# Installation de bo-stages (BackOffice Stages)
 
-Plusieurs informations pour l'utilisation de la VM
+Pour installer l'application sur une machine disposant de :
+- PHP version >= 8.1
+- Postgres 15 en local sur le port 5432
 
-### Pour démarrer la VM et le serveur de gestion des stages
-1. Se connecter sur une station en salle Linux
-2. Repérer l'adresse IP de la station hôte : `ip a show` ou `nslookup pc-dg-033-01`
-3. Se placer dans le répertoire de votre groupe :
+suivre les étapes suivantes :
 
-  Par exemple : `cd /users/Stockage-HDD/images-kvm/S4.A.01/groupes/groupe2/`
+## Installer composer et symfony CLI sur votre machine
+https://symfony.com/doc/5.4/setup.html
 
-4. Exécuter le script de démarrage de la VM : `./launch.sh`
-5. Vous disposez des droits administrateurs avec le compte:
-	
-	`root` (mdp : `root`) 
-	
-	et d'un compte standard `stage` (mdp : `stage`)
-	
-6. Se connecter avec le compte `stage`
-7. Pour démarrer le serveur PHP de gestion des stages, faire : 
-	
-	`cd ~/bo-stages` 
-	
-	puis `symfony server:start -no-tls -d`
-	
-8. Le code du serveur se trouve entièrement dans ce répertoire
-9. Pour arrêter le serveur faire `symfony server:stop`
+##  Cloner le dépôt GitLab
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info/sa-4-a/bo-stages.git
 
-### Se connecter au serveur de stages
+##  Se positionner dans le répertoire du projet
+cd bo-stages
 
-La machine virtuelle est accessible depuis n'importe quelle station pour les ports 
+##  Installer les packages symfony
+composer **install**
 
-	8000 (serveur de gestion des stages)
-	et 
-	2222 (accès distant ssh)
+## Si Linux (ou Mac ?), installer le package acl (apt install acl) et donner les bons droits sur les clés SSL :
+- setfacl -R -m u:www-data:rX -m u:"$(whoami)":rwX config/jwt
+- setfacl -dR -m u:www-data:rX -m u:"$(whoami)":rwX config/jwt
 
-1. Accès depuis un navigateur avec l'URL :
+##  Créer une base Postgres appelée app-stages pour un utilisateur app-stages de mot de passe app-stages
+Vérifier que c'est cohérent avec la variable **DATABASE_URL** dans le fichier **.env** (Postgres en local sur le port 5432)
 
-	`http://localhost:8000` (en local), 
-	
-	`http://@IP.station.hôte:8000/` (à distance)
-	
-2. Accès à l'API REST du serveur :
+##  Peupler la base de données
+Dans pg_admin, restaurer la base **app-stages** à partir du fichier **dump_BD.sql**
 
-	`http://localhost:8000/api/` (en local), 
-	
-	`http://@IP.station.hôte:8000/api/` (à distance)
-	
-3. Accès depuis l'application mobile (simulateur AndroidStudio), éditer le fichier 
-	
-	`mc2s-mobile/app/src/main/java/fr/iut2/saeprojet/api/APIClient.java`
-	
-	et mettre à jour la constante `BASE_URL` (ne pas mettre `127.0.0.1` ou `localhost`)
-	
-4. Accès en ssh depuis une station : `ssh stage@IP.station.hôte -p 2222`
+##  Lancer le serveur de dev de symfony
+symfony server:start -no-tls -d
 
-5. Accéder au serveur postgres (ligne de commande) :
-	1. Se connecter avec le compte `stage`
-	2. Exécuter la commande `su -` (mdp `root`) pour un accès administrateur
-	3. Exécuter la commande `su - postgres` pour un accès au compte `postgres`
-	4. Pour se connecter avec l'utilisateur `postgres` (mdp `postgres`) : `psql -U app-stages -d app-stages -W -h 127.0.0.1`
-	5. Pour se connecter à la **base app-stages** avec l'utilisateur `app-stages` (mdp `app-stages`) : `psql -U app-stages -d app-stages -W -h 127.0.0.1`
+##  Naviguer vers l'application 
+http://localhost:8000/
 
-### Comptes pour l'application serveur de stages
+##  Connexion
+L'administrateur a le login **fontenae**, mot de passe : **eric**
+Les étudiants créés par défaut ont pour mot de passe leur **prenom** (sans majuscule mais avec les accents sauf sur le 1er car.)
 
-Tous les comptes sont répertoriés dans l'extraction de la base (fichier `dump_BD.sql`). Il y a un compte administrateur `fontenae` (mdp `eric`) et des faux comptes étudiants comme `borealea` (mdp `aurore`).
+##  Consulter la doc de l'API REST (et la tester !)
+http://localhost:8000/api/docs/
 
-# Machine virtuelle (VM) VirtualBox
+## Tester l'API REST avec Postman
+Le fichier exemples-requetes-API...json est une collection de requêtes à charger depuis PostMan
 
-1. Prévoir environ 9 Go à 10 Go d'espace disque
-1. Télécharger l'application VirtualBox à l'adresse `https://www.virtualbox.org/` et faire une installation standard
-2. Récupérer depuis le serveur `transit` les fichiers `SAE.vbox` et `serveur-sae-s4.vdi.xz` (image compressée, 1.7Go) depuis le répertoire `/users/Stockage-HDD/images-kvm/S4.A.01/install`
-3. Placer les deux fichiers dans un même répertoire et décompresser l'image
-4. Faire un double-click sur le fichier `SAE.vbox` : une nouvelle machine est automatiquement ajoutée dans VirtualBox
-5. Dans l'application VirtualBox, il suffit de démarrer la VM. Elle est configurée pour accéder à internet et être accessible sur les ports 8000 et 2222 (voir plus haut)
-6. Vous pouvez ensuite configurer le copier-coller entre votre station et la VM ainsi que des dossier partagés ce qui est pratique pour échanger des fichiers.
-
-
-  
+##  A la fin, arrêter le serveur
+symfony server:stop
