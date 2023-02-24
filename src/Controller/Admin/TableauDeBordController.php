@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/tableau_de_bord')]
 class TableauDeBordController extends AbstractController {
 
+    /**
+     * Route permettant a l'administrateur d'acceder au tableau de bord.
+     **/
     #[Route('/', name: 'app_admin_tableau_de_bord_index', methods: ['GET'])]
     public function index(CompteEtudiantRepository $compteEtudiantRepository): Response {
         return $this->render('Tableau_de_bord/index.html.twig', [
@@ -20,6 +23,9 @@ class TableauDeBordController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'acceder à "l'évolution" de l'étudiant en fonction de son id.
+     **/
     #[Route('/show/{id}', name: 'app_admin_tableau_de_bord_show', methods: ['GET'])]
     public function show(OffreService $offreService, CompteEtudiant $compte): Response {
         

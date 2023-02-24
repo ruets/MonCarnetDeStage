@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/candidature')]
 class CandidatureController extends AbstractController {
 
+
+    /**
+     * Route permettant a l'administrateur de visualiser toute les candidatures des etudiants.
+     **/
     #[Route('/', name: 'app_candidature_index', methods: ['GET'])]
     public function index(CandidatureRepository $candidatureRepository): Response {
         return $this->render('Admin/candidature/index.html.twig', [
@@ -20,6 +24,9 @@ class CandidatureController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter une nouvelle candidature'.
+     **/
     #[Route('/new', name: 'app_candidature_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CandidatureRepository $candidatureRepository): Response {
         $candidature = new Candidature();
@@ -38,6 +45,9 @@ class CandidatureController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser les données de la candidature en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_candidature_show', methods: ['GET'])]
     public function show(Candidature $candidature): Response {
         return $this->render('Admin/candidature/show.html.twig', [
@@ -45,6 +55,9 @@ class CandidatureController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de d'éditer les données de la candidature en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_candidature_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Candidature $candidature, CandidatureRepository $candidatureRepository): Response {
         $form = $this->createForm(CandidatureType::class, $candidature);
@@ -62,6 +75,9 @@ class CandidatureController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer la candidature en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_candidature_delete', methods: ['POST'])]
     public function delete(Request $request, Candidature $candidature, CandidatureRepository $candidatureRepository): Response {
         if ($this->isCsrfTokenValid('delete' . $candidature->getId(), $request->request->get('_token'))) {

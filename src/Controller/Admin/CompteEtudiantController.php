@@ -14,6 +14,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[Route('/admin/compte_etudiant')]
 class CompteEtudiantController extends AbstractController {
 
+    /**
+     * Route permettant a l'administrateur de visualiser tout les comptes "etudiants".
+     **/
     #[Route('/', name: 'app_compte_etudiant_index', methods: ['GET'])]
     public function index(CompteEtudiantRepository $compteEtudiantRepository): Response {
         return $this->render('Admin/compte_etudiant/index.html.twig', [
@@ -21,6 +24,9 @@ class CompteEtudiantController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de créer un nouveau compte étudiant.
+     **/
     #[Route('/new', name: 'app_compte_etudiant_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CompteEtudiantRepository $compteEtudiantRepository,
             UserPasswordHasherInterface $passwordHasher): Response {
@@ -41,6 +47,9 @@ class CompteEtudiantController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de voir les données du compte d'un étudiant en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_compte_etudiant_show', methods: ['GET'])]
     public function show(CompteEtudiant $compteEtudiant): Response {
         return $this->render('Admin/compte_etudiant/show.html.twig', [
@@ -48,6 +57,9 @@ class CompteEtudiantController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer les données du compte d'un etudiant en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_compte_etudiant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CompteEtudiant $compteEtudiant,
             CompteEtudiantRepository $compteEtudiantRepository,
@@ -71,6 +83,9 @@ class CompteEtudiantController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer le compte d'un étudiant en fontion de son id.
+     **/
     #[Route('/{id}', name: 'app_compte_etudiant_delete', methods: ['POST'])]
     public function delete(Request $request, CompteEtudiant $compteEtudiant, CompteEtudiantRepository $compteEtudiantRepository): Response {
         if ($this->isCsrfTokenValid('delete' . $compteEtudiant->getId(), $request->request->get('_token'))) {
