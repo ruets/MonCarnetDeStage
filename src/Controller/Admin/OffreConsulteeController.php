@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/offre_consultee')]
 class OffreConsulteeController extends AbstractController
 {
+    /**
+     * Route permettant a l'administrateur de visualiser tous les offres consultée.
+     **/
     #[Route('/', name: 'app_offre_consultee_index', methods: ['GET'])]
     public function index(OffreConsulteeRepository $offreConsulteeRepository): Response
     {
@@ -21,6 +24,9 @@ class OffreConsulteeController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter une nouvelle offre consultée.
+     **/
     #[Route('/new', name: 'app_offre_consultee_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OffreConsulteeRepository $offreConsulteeRepository): Response
     {
@@ -40,6 +46,9 @@ class OffreConsulteeController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser une nouvelle offre consultée en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_offre_consultee_show', methods: ['GET'])]
     public function show(OffreConsultee $offreConsultee): Response
     {
@@ -48,6 +57,9 @@ class OffreConsulteeController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer une nouvelle offre consultée en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_offre_consultee_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, OffreConsultee $offreConsultee, OffreConsulteeRepository $offreConsulteeRepository): Response
     {
@@ -66,6 +78,9 @@ class OffreConsulteeController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer une offre consultée en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_offre_consultee_delete', methods: ['POST'])]
     public function delete(Request $request, OffreConsultee $offreConsultee, OffreConsulteeRepository $offreConsulteeRepository): Response
     {

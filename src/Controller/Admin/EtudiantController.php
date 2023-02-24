@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/etudiant')]
 class EtudiantController extends AbstractController
 {
+    /**
+     * Route permettant a l'administrateur de visualiser tous les étudiants.
+     **/
     #[Route('/', name: 'app_etudiant_index', methods: ['GET'])]
     public function index(EtudiantRepository $etudiantRepository): Response
     {
@@ -21,6 +24,9 @@ class EtudiantController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter un nouvel étudiant.
+     **/
     #[Route('/new', name: 'app_etudiant_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EtudiantRepository $etudiantRepository): Response
     {
@@ -40,6 +46,9 @@ class EtudiantController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser les données d'un étudiant en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_etudiant_show', methods: ['GET'])]
     public function show(Etudiant $etudiant): Response
     {
@@ -48,6 +57,9 @@ class EtudiantController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer les données d'un étudiant en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_etudiant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Etudiant $etudiant, EtudiantRepository $etudiantRepository): Response
     {
@@ -66,6 +78,9 @@ class EtudiantController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer un étudiant en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_etudiant_delete', methods: ['POST'])]
     public function delete(Request $request, Etudiant $etudiant, EtudiantRepository $etudiantRepository): Response
     {

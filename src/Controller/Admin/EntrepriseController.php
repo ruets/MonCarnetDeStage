@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/entreprise')]
 class EntrepriseController extends AbstractController
 {
+    /**
+     * Route permettant a l'administrateur de visualiser toute les entreprises.
+     **/
     #[Route('/', name: 'app_entreprise_index', methods: ['GET'])]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
@@ -21,6 +24,9 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter une nouvelle entreprise.
+     **/
     #[Route('/new', name: 'app_entreprise_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntrepriseRepository $entrepriseRepository): Response
     {
@@ -40,6 +46,9 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser les données d'une entreprise en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_entreprise_show', methods: ['GET'])]
     public function show(Entreprise $entreprise): Response
     {
@@ -48,6 +57,9 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer les données d'une entrepise en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_entreprise_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Entreprise $entreprise, EntrepriseRepository $entrepriseRepository): Response
     {
@@ -66,6 +78,9 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer une entreprise en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_entreprise_delete', methods: ['POST'])]
     public function delete(Request $request, Entreprise $entreprise, EntrepriseRepository $entrepriseRepository): Response
     {

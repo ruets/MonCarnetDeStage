@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/offre')]
 class OffreController extends AbstractController
 {
+    /**
+     * Route permettant a l'administrateur de visualiser tous les offres.
+     **/
     #[Route('/', name: 'app_offre_index', methods: ['GET'])]
     public function index(OffreRepository $offreRepository): Response
     {
@@ -21,6 +24,9 @@ class OffreController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter une nouvelle offre.
+     **/
     #[Route('/new', name: 'app_offre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OffreRepository $offreRepository): Response
     {
@@ -40,6 +46,9 @@ class OffreController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser une offre en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_offre_show', methods: ['GET'])]
     public function show(Offre $offre): Response
     {
@@ -48,6 +57,9 @@ class OffreController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer une offre en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_offre_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Offre $offre, OffreRepository $offreRepository): Response
     {
@@ -66,6 +78,9 @@ class OffreController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer une offre en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_offre_delete', methods: ['POST'])]
     public function delete(Request $request, Offre $offre, OffreRepository $offreRepository): Response
     {

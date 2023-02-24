@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/etat_candidature')]
 class EtatCandidatureController extends AbstractController
 {
+    /**
+     * Route permettant a l'administrateur de visualiser les états des candidatures.
+     **/
     #[Route('/', name: 'app_etat_candidature_index', methods: ['GET'])]
     public function index(EtatCandidatureRepository $etatCandidatureRepository): Response
     {
@@ -21,6 +24,9 @@ class EtatCandidatureController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter un nouvel état pour une candidature.
+     **/
     #[Route('/new', name: 'app_etat_candidature_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EtatCandidatureRepository $etatCandidatureRepository): Response
     {
@@ -40,6 +46,9 @@ class EtatCandidatureController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser les données de l'état d'une candidature en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_etat_candidature_show', methods: ['GET'])]
     public function show(EtatCandidature $etatCandidature): Response
     {
@@ -48,6 +57,9 @@ class EtatCandidatureController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer les données de l'état d'une candidature en fonction de son id .
+     **/
     #[Route('/{id}/edit', name: 'app_etat_candidature_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, EtatCandidature $etatCandidature, EtatCandidatureRepository $etatCandidatureRepository): Response
     {
@@ -66,6 +78,9 @@ class EtatCandidatureController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de suppprimer un état d'une candidature en fonction de son id .
+     **/
     #[Route('/{id}', name: 'app_etat_candidature_delete', methods: ['POST'])]
     public function delete(Request $request, EtatCandidature $etatCandidature, EtatCandidatureRepository $etatCandidatureRepository): Response
     {

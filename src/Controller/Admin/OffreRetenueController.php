@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/offre_retenue')]
 class OffreRetenueController extends AbstractController
 {
+
+    /**
+     * Route permettant a l'administrateur de visualiser tous les offres retenue.
+     **/
     #[Route('/', name: 'app_offre_retenue_index', methods: ['GET'])]
     public function index(OffreRetenueRepository $offreRetenueRepository): Response
     {
@@ -21,6 +25,9 @@ class OffreRetenueController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'ajouter une nouvelle offre retenue.
+     **/
     #[Route('/new', name: 'app_offre_retenue_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OffreRetenueRepository $offreRetenueRepository): Response
     {
@@ -40,6 +47,9 @@ class OffreRetenueController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de visualiser une offre retenue en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_offre_retenue_show', methods: ['GET'])]
     public function show(OffreRetenue $offreRetenue): Response
     {
@@ -48,6 +58,9 @@ class OffreRetenueController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur d'éditer une offre retenue en fonction de son id.
+     **/
     #[Route('/{id}/edit', name: 'app_offre_retenue_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, OffreRetenue $offreRetenue, OffreRetenueRepository $offreRetenueRepository): Response
     {
@@ -66,6 +79,9 @@ class OffreRetenueController extends AbstractController
         ]);
     }
 
+    /**
+     * Route permettant a l'administrateur de supprimer une offre retenue en fonction de son id.
+     **/
     #[Route('/{id}', name: 'app_offre_retenue_delete', methods: ['POST'])]
     public function delete(Request $request, OffreRetenue $offreRetenue, OffreRetenueRepository $offreRetenueRepository): Response
     {
