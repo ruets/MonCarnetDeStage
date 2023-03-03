@@ -63,14 +63,27 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         $this->offreRetenues = new ArrayCollection();
     }
 
+    /**
+     * Récupère l'id de l'objet CompteEtudiant
+     * @return int|null Retourne l'id du compte étudiant, null sinon
+     */
     public function getId(): ?int {
         return $this->id;
     }
 
+    /**
+     * Récupère le login de l'objet CompteEtudiant
+     * @return string|null Retourne le login du compte étudiant, null sinon
+     */
     public function getLogin(): ?string {
         return $this->login;
     }
 
+    /**
+     * Créer le login de l'objet CompteEtudiant
+     * @param string $login Le paramètre prend le nom "$login". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setLogin(string $login): self {
         $this->login = $login;
 
@@ -78,23 +91,27 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
     }
 
     /**
-     * A visual identifier that represents this user.
-     *
+     * Récupère le login de l'objet CompteEtudiant et le convertie en valeur de type string
      * @see UserInterface
+     * @return string Retourne le login de l'objet CompteEtudiant
      */
     public function getUserIdentifier(): string {
         return (string) $this->login;
     }
 
     /**
+     * Récupère le login de l'objet CompteEtudiant et le convertie en valeur de type string
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     * @return string Retourne le login de l'objet CompteEtudiant
      */
     public function getUsername(): string {
         return (string) $this->login;
     }
 
     /**
+     * Récupère les role de l'objet CompteEtudiant
      * @see UserInterface
+     * @return array_unique Retourne les rôles de l'objet CompteEtudiant
      */
     public function getRoles(): array {
         $roles = $this->roles;
@@ -104,6 +121,11 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         return array_unique($roles);
     }
 
+    /**
+     * Créer une liste de type array pour l'objet CompteEtudiant
+     * @param array $roles Le paramètre prend le nom "$roles". C'est un array
+     * @return $this Retourne la valeur de $this
+     */
     public function setRoles(array $roles): self {
         $this->roles = $roles;
 
@@ -111,12 +133,19 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
     }
 
     /**
+     * Récupère le mot passe de l'objet CompteEtudiant
      * @see PasswordAuthenticatedUserInterface
+     * @return string Retourne le mot de passe de l'objet CompteEtudiant
      */
     public function getPassword(): string {
         return $this->password;
     }
 
+    /**
+     * Créer un mot de passe pour l'objet CompteEtudiant
+     * @param string $password Le paramètre prend le nom "$password". C'est une valeur de type string
+     * @return $this la valeur de $this
+     */
     public function setPassword(string $password): self {
         $this->password = $password;
 
