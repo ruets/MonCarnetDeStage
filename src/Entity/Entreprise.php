@@ -34,16 +34,27 @@ class Entreprise
         $this->offres = new ArrayCollection();
     }
 
+    /** Récupère l'id de l'objet Entreprise
+     * @return int|null Retourne l'id de l'objet Entrprise, null sinon
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /** Récuprère la raison Sociale pour l'objet Entreprise
+     * @return string|null Retourne une raison sociale pour l'objet Entreprise, null sinon
+     */
     public function getRaisonSociale(): ?string
     {
         return $this->raisonSociale;
     }
 
+    /**
+     * Créer une raison sociale pour l'objet Entreprise
+     * @param string $raisonSociale Le paramètre prend le nom "$raisonSociale". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setRaisonSociale(string $raisonSociale): self
     {
         $this->raisonSociale = $raisonSociale;
@@ -51,11 +62,19 @@ class Entreprise
         return $this;
     }
 
+    /**
+     * Récupère la ville de l'objet Entrprise
+     * @return string|null Retourne la ville de l'objet Entreprise
+     */
     public function getVille(): ?string
     {
         return $this->ville;
     }
 
+    /**
+     * @param string $ville Le paramètre prend le nom "$ville". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setVille(string $ville): self
     {
         $this->ville = $ville;
@@ -63,11 +82,20 @@ class Entreprise
         return $this;
     }
 
+    /**
+     * Récupère le pays pour l'objet Entreprise
+     * @return string|null Retourne le pays de l'objet Entreprise
+     */
     public function getPays(): ?string
     {
         return $this->pays;
     }
 
+    /**
+     * Créer un pays pour l'objet Entreprise
+     * @param string|null $pays Le paramètre prend le nom "$pays". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setPays(?string $pays): self
     {
         $this->pays = $pays;
@@ -76,13 +104,19 @@ class Entreprise
     }
 
     /**
-     * @return Collection<int, Offre>
+     * Récupère les offres pour l'objet Entreprise
+     * @return Collection<int, Offre> Retourne une collections d'offre pour l'objet Entreprise
      */
     public function getOffres(): Collection
     {
         return $this->offres;
     }
 
+    /**
+     * Ajoute une offre pour l'objet Entreprise
+     * @param Offre $offre Le paramètre prend le nom "$offre". C'est une valeur de type Offre
+     * @return $this Récupère la valeur de $this
+     */
     public function addOffre(Offre $offre): self
     {
         if (!$this->offres->contains($offre)) {
@@ -93,6 +127,11 @@ class Entreprise
         return $this;
     }
 
+    /**
+     * Supprime une offre pour l'objet Entreprise
+     * @param Offre $offre Le paramètre prend le nom "$offre". C'est une valeur de type Offre
+     * @return $this Récupère la valeur de $this
+     */
     public function removeOffre(Offre $offre): self
     {
         if ($this->offres->removeElement($offre)) {
@@ -104,7 +143,11 @@ class Entreprise
 
         return $this;
     }
-    
+
+    /**
+     * Permet de donner une valeur sous forme de string
+     * @return string|null Retourne une valeur au format string
+     */
     public function __toString() {
         return $this->getRaisonSociale();
     }

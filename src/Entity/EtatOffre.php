@@ -31,24 +31,46 @@ class EtatOffre {
         $this->offres = new ArrayCollection();
     }
 
+    /**
+     * Récupère l'id de l'objet EtatOffre
+     * @return int|null Retourne l'id de l'objet EtatOffre
+     */
     public function getId(): ?int {
         return $this->id;
     }
 
+    /**
+     * Récupère l'état de l'objet EtatOffre
+     * @return string|null Retourne l'état de l'objet EtatOffre, null sinon
+     */
     public function getEtat(): ?string {
         return $this->etat;
     }
 
+    /**
+     * Créer un état pour l'objet EtatOffre
+     * @param string $etat Le paramètre prend le nom "$etat". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setEtat(string $etat): self {
         $this->etat = $etat;
 
         return $this;
     }
 
+    /**
+     * Récupère le descriptif pour l'objet EtatOffre
+     * @return string|null Retourne le desriptif de l'objet EtatOffre
+     */
     public function getDescriptif(): ?string {
         return $this->descriptif;
     }
 
+    /**
+     * Créer un descriptif pour l'objet EtatOffre
+     * @param string|null $descriptif Le paramètre prend le nom "$descriptif". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setDescriptif(?string $descriptif): self {
         $this->descriptif = $descriptif;
 
@@ -56,12 +78,18 @@ class EtatOffre {
     }
 
     /**
-     * @return Collection<int, Offre>
+     * Récupère une collection d'offre pour l'objet EtatOffre
+     * @return Collection<int, Offre> Retourne une collection d'offre pour l'objet EtatOffre
      */
     public function getOffres(): Collection {
         return $this->offres;
     }
 
+    /**
+     * Ajoute une offre pour l'objet EtatOffre
+     * @param Offre $offre Le paramètre prend le nom "$offre". C'est une valeur de type Offre
+     * @return $this Retourne la valeur de $this
+     */
     public function addOffre(Offre $offre): self {
         if (!$this->offres->contains($offre)) {
             $this->offres->add($offre);
@@ -71,6 +99,11 @@ class EtatOffre {
         return $this;
     }
 
+    /**
+     * Supprime une offre pour l'objet EtatOffre
+     * @param Offre $offre Le paramètre prend le nom "$offre". C'est une valeur de type Offre
+     * @return $this Retourne la valeur de $this
+     */
     public function removeOffre(Offre $offre): self {
         if ($this->offres->removeElement($offre)) {
             // set the owning side to null (unless already changed)
@@ -82,6 +115,10 @@ class EtatOffre {
         return $this;
     }
 
+    /**
+     * Permet de donner une valeur sous forme de string
+     * @return string Retourne une valeur au format string
+     */
     public function __toString(): string {
         return $this->getEtat();
     }
