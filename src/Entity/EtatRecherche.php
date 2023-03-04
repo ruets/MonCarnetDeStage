@@ -31,37 +31,65 @@ class EtatRecherche {
         $this->comptesEtudiant = new ArrayCollection();
     }
 
+    /**
+     * Récupère l'id de l'objet EtatRecherche
+     * @return int|null Retourne l'id de l'objet EtatRecherche
+     */
     public function getId(): ?int {
         return $this->id;
     }
 
+    /**
+     * Récupère l'état de l'objet EtatRecherche
+     * @return string|null Retourne l'état de l'objet EtatRecherche, null sinon
+     */
     public function getEtat(): ?string {
         return $this->etat;
     }
 
+    /**
+     * Créer un état pour l'objet EtatRecherche
+     * @param string $etat Le paramètre prend le nom "$etat". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setEtat(string $etat): self {
         $this->etat = $etat;
 
         return $this;
     }
 
+    /**
+     * Récupère le descriptif pour l'objet EtatRecherche
+     * @return string|null Retourne le desriptif de l'objet EtatRecherche
+     */
     public function getDescriptif(): ?string {
         return $this->descriptif;
     }
 
+    /**
+     * Créer un descriptif pour l'objet EtatRecherche
+     * @param string|null $descriptif Le paramètre prend le nom "$descriptif". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     */
     public function setDescriptif(?string $descriptif): self {
         $this->descriptif = $descriptif;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, CompteEtudiant>
+    /** Récupère une collection de compte étudiant pour l'objet EtatRecherche
+     * @return Collection<int, CompteEtudiant> Retourne une collection de compte étudiant pour l'objet EtatRecherche
      */
     public function getComptesEtudiant(): Collection {
         return $this->comptesEtudiant;
     }
 
+
+    /**
+     * Ajoute un compte etudiant pour l'objet EtatOffre
+     * @param CompteEtudiant $comptesEtudiant Le paramètre prend le nom "$offre". C'est une valeur de type CompteEtudiant
+     * @return $this Retourne la valeur de $this
+     */
     public function addComptesEtudiant(CompteEtudiant $comptesEtudiant): self {
         if (!$this->comptesEtudiant->contains($comptesEtudiant)) {
             $this->comptesEtudiant->add($comptesEtudiant);
@@ -71,6 +99,11 @@ class EtatRecherche {
         return $this;
     }
 
+    /**
+     * Supprime un compte etudiant pour l'objet EtatOffre
+     * @param CompteEtudiant $comptesEtudiant Le paramètre prend le nom "$offre". C'est une valeur de type CompteEtudiant
+     * @return $this Retourne la valeur de $this
+     */
     public function removeComptesEtudiant(CompteEtudiant $comptesEtudiant): self {
         if ($this->comptesEtudiant->removeElement($comptesEtudiant)) {
             // set the owning side to null (unless already changed)
@@ -82,6 +115,10 @@ class EtatRecherche {
         return $this;
     }
 
+    /**
+     * Permet de donner une valeur sous forme de string
+     * @return string Retourne une valeur au format string
+     */
     public function __toString(): string {
         return $this->getEtat();
     }
