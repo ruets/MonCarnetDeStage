@@ -70,7 +70,7 @@ class Candidature
     }
 
     /**
-     * Récupère l'objet Offre de l'objet Candidature
+     * Récupère l'offre de l'objet Candidature
      * @return Offre|null Retourne la valeur de l'objet Offre, sinon null
      */
     public function getOffre(): ?Offre
@@ -79,7 +79,7 @@ class Candidature
     }
 
     /**
-     * Créer l'objet Offre pour l'objet Candidature
+     * Créer l'offre pour l'objet Candidature
      * @param Offre|null $offre Le paramètre prend le nom "$offre". Il est soit un objet Offre ou null
      * @return $this Retourne la valeur de $this
      */
@@ -91,7 +91,7 @@ class Candidature
     }
 
     /**
-     * Récupère un type d'action de l'objet Candidature
+     * Récupère le type d'action de l'objet Candidature
      * @return string|null Retourne un valeur string, ou null
      */
     public function getTypeAction(): ?string
@@ -100,7 +100,7 @@ class Candidature
     }
 
     /**
-     * Créer une valeur string pour l'objet Candidature
+     * Créer un type d'action pour l'objet Candidature
      * @param string|null $typeAction Le paramètre prend le nom "$typeAction". Il est soit une valeur de type string ou null
      * @return $this Retourne la valeur de $this
      */
@@ -112,7 +112,7 @@ class Candidature
     }
 
     /**
-     * Récupère l'objet DateTimeInterface de l'objet Candidature
+     * Récupère la date d'action de l'objet Candidature
      * @return \DateTimeInterface|null Retourne la valeur d'un objet DateTimeInterface, null sinon
      */
     public function getDateAction(): ?\DateTimeInterface
@@ -121,7 +121,7 @@ class Candidature
     }
 
     /**
-     * Créer un objet de DateTimeInterface pour l'objet Candidature
+     * Créer une date d'action pour l'objet Candidature
      * @param \DateTimeInterface $dateAction Le paramètre prend le nom "$dateAction". Il est soit un objet DateTimeInterface ou null
      * @return $this Retourne la valeur de $this
      */

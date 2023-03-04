@@ -122,7 +122,7 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
     }
 
     /**
-     * Créer une liste de type array pour l'objet CompteEtudiant
+     * Créer une liste de role pour l'objet CompteEtudiant
      * @param array $roles Le paramètre prend le nom "$roles". C'est un array
      * @return $this Retourne la valeur de $this
      */
@@ -170,41 +170,77 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         // $this->plainPassword = null;
     }
 
+    /**
+     * Récupère le parcours pour l'objet CompteEtudiant
+     * @return string|null Retourne une valeur de type string, null sinon
+     **/
     public function getParcours(): ?string {
         return $this->parcours;
     }
 
+    /**
+     * Créer un parcours de type string pour l'objet CompteEtudiant
+     * @param string $parcours Le paramètre prend le nom "$parcours". C'est une valeur de type string
+     * @return $this Retourne la valeur de $this
+     **/
     public function setParcours(string $parcours): self {
         $this->parcours = $parcours;
 
         return $this;
     }
 
+    /**
+     * Récupère la dernière connexion pour l'objet CmpteEtudiant
+     * @return \DateTimeInterface|null Retourne un objet DateTimeInterface, null sinon
+     */
     public function getDerniereConnexion(): ?\DateTimeInterface {
         return $this->derniereConnexion;
     }
 
+    /**
+     * Créer la dernière connexion pour l'objet CompteEtudiant
+     * @param \DateTimeInterface|null $derniereConnexion Le paramètre prend le nom "$derniereConnexion". C'est une valeur de type DateTimeInterface ou null
+     * @return $this Retourne la valeur de $this
+     */
     public function setDerniereConnexion(?\DateTimeInterface $derniereConnexion): self {
         $this->derniereConnexion = $derniereConnexion;
 
         return $this;
     }
 
+    /**
+     * Récupère l'état de recherche pour l'objet CompteEtudiant
+     * @return EtatRecherche|null Retourne un objet EtatRecherche, null sinon
+     */
     public function getEtatRecherche(): ?EtatRecherche {
         return $this->etatRecherche;
     }
 
+    /**
+     * Créer un état de recherche pour l'objet CompteEtudiant
+     * @param EtatRecherche|null $etatRecherche Le paramètre prend le nom "$etatRecherche". C'est une valeur de type EtatRecherche ou null
+     * @return $this Retoune la valeur de $this
+     */
     public function setEtatRecherche(?EtatRecherche $etatRecherche): self {
         $this->etatRecherche = $etatRecherche;
 
         return $this;
     }
 
+    /**
+     * Récupère l'objet Etudiant pour l'objet CompteEtudiant
+     * @return Etudiant|null Retourne un objet Etudiant, null sinon
+     */
     public function getEtudiant(): ?Etudiant
     {
         return $this->etudiant;
     }
 
+    /**
+     * Créer un objet Etudiant pour l'objet CompteEtudiant
+     * @param Etudiant $etudiant Le paramètre prend le nom "$etudiant". C'est une valeur de type Etudiant
+     * @return $this Retourne la valeur de $this
+     */
     public function setEtudiant(Etudiant $etudiant): self
     {
         $this->etudiant = $etudiant;
@@ -212,19 +248,28 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         return $this;
     }
 
+    /**
+     * Permet de donner une valeur sous forme de string
+     * @return string Retourne la valeur en string
+     */
     public function __toString(): string {
         return $this->getUserIdentifier() . " (" . $this->getEtudiant()->getNom() 
                 . " " . $this->getEtudiant()->getPrenom() . ")";
     }
 
-    /**
-     * @return Collection<int, OffreConsultee>
+    /** Récupère l'objet OffreConsultee pour l'objet CompteEtudiant
+     * @return Collection<int, OffreConsultee> Retourne dans une collection l'objet OffreConsultee
      */
     public function getOffreConsultees(): Collection
     {
         return $this->offreConsultees;
     }
 
+    /**
+     * Ajoute une offre consultée a l'objet CompteEtudiant
+     * @param OffreConsultee $offreConsultee Le paramètre prend le nom "$offreConsultee". C'est une valeur de type OffreConsultee
+     * @return $this Retourne la valeur de $this
+     */
     public function addOffreConsultee(OffreConsultee $offreConsultee): self
     {
         if (!$this->offreConsultees->contains($offreConsultee)) {
@@ -235,6 +280,11 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         return $this;
     }
 
+    /**
+     * Supprime une offre consultée pour l'objet CompteEtudiant
+     * @param OffreConsultee $offreConsultee Le paramètre prend le nom "$offreConsultee". C'est une valeur de type OffreConsultee
+     * @return $this Retourne la valeur de $this
+     */
     public function removeOffreConsultee(OffreConsultee $offreConsultee): self
     {
         if ($this->offreConsultees->removeElement($offreConsultee)) {
@@ -248,13 +298,19 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
     }
 
     /**
-     * @return Collection<int, OffreRetenue>
+     * Récupère l'offre retenue pour l'objet CompteEtudiant
+     * @return Collection<int, OffreRetenue> Retourne une collection d'offre retenue
      */
     public function getOffreRetenues(): Collection
     {
         return $this->offreRetenues;
     }
 
+    /**
+     * Ajoute une offre retenue a l'objet CompteEtudiant
+     * @param OffreRetenue $offreRetenue Le paramètre prend le nom "$offreRetenue". C'est une valeur de type OffreRetenue
+     * @return $this Retourne la valeur de $this
+     */
     public function addOffreRetenue(OffreRetenue $offreRetenue): self
     {
         if (!$this->offreRetenues->contains($offreRetenue)) {
@@ -265,6 +321,11 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         return $this;
     }
 
+    /**
+     * Supprime une offre retenue pour l'objet CompteEtudiant
+     * @param OffreRetenue $offreRetenue Le paramètre prend le nom "$offreRetenue". C'est une valeur de type OffreRetenue
+     * @return $this Retourne la valeur de $this
+     */
     public function removeOffreRetenue(OffreRetenue $offreRetenue): self
     {
         if ($this->offreRetenues->removeElement($offreRetenue)) {
@@ -277,14 +338,19 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         return $this;
     }
 
-    /**
-     * @return Collection<int, Candidature>
+    /** Récupère les candidature pour l'objet CompteEtudiant
+     * @return Collection<int, Candidature> Retourne une collection de candidatures
      */
     public function getCandidatures(): Collection
     {
         return $this->candidatures;
     }
 
+    /**
+     * Ajoute une candidature pour l'objet CompteEtudiant
+     * @param Candidature $candidature Le paramètre prend le nom "$candidature". C'est une valeur de type Candidature
+     * @return $this Retourne la valeur de $this
+     */
     public function addCandidature(Candidature $candidature): self
     {
         if (!$this->candidatures->contains($candidature)) {
@@ -295,6 +361,11 @@ class CompteEtudiant implements UserInterface, PasswordAuthenticatedUserInterfac
         return $this;
     }
 
+    /**
+     * Supprime une candidature pour l'objet CompteEtudiant
+     * @param Candidature $candidature Le paramètre prend le nom "$candidature". C'est une valeur de type Candidature
+     * @return $this Retourne la valeur de $this
+     */
     public function removeCandidature(Candidature $candidature): self
     {
         if ($this->candidatures->removeElement($candidature)) {
