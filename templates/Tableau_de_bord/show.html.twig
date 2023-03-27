@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Offres par Etudiant{% endblock %}
-{% dump(compte)%}
+{{ dump(offresByCompte)}}
 {% block sort %}[0, 'asc'], [2, 'desc'], [9, 'desc']{% endblock %}
 {% block body %}
     {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'}, 
