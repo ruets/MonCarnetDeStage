@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Offres par Etudiant{% endblock %}
-{{ dump(compte) }}
+{% dump(compte)%}
 {% block sort %}[0, 'asc'], [2, 'desc'], [9, 'desc']{% endblock %}
 {% block body %}
     {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'}, 
@@ -69,7 +69,7 @@
                                 </td>
                                 <td>
                                     <span class="badge rounded-pill bg-{{styleCandidature[offreCompte.candidature.etatCandidature.id].color}}"
-                                          style=""width: 100%"
+                                          style="width: 100%"
                                           data-bs-toggle="tooltip" data-bs-title="{{ offreCompte.candidature.etatCandidature.descriptif }}">
                                         {#<i class="fa fa-{{styleCandidature[offreCompte.candidature.etatCandidature.id].icon}}"></i>#}
                                         {{ offreCompte.candidature.etatCandidature }}
