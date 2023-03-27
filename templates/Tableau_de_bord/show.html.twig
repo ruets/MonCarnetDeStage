@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Offres par Etudiant{% endblock %}
 {% block sort %}[0, 'asc'], [2, 'desc'], [9, 'desc']{% endblock %}
+{{ dump("WESH")}}
 {% block body %}
-{{ dump(offresByCompte)}}
     {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'},
                                 2:{'color':'warning',   'icon':'star'},
                                 3:{'color':'info',      'icon':'eye'},
@@ -74,7 +74,8 @@
                                         {#<i class="fa fa-{{styleCandidature[offreCompte.candidature.etatCandidature.id].icon}}"></i>#}
                                         {{ offreCompte.candidature.etatCandidature }}
                                 </td>
-
+                            {% else %}
+                                <td/><td/><td/>
                             {% endif %}
                             <td style="border-left: thin solid grey"><b>{{ offreCompte.offre.entreprise.raisonSociale }}</b></td>
                             <td>{{ offreCompte.offre.entreprise.ville }}</td>
