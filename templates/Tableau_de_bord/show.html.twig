@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Offres par Etudiant{% endblock %}
-{{ dump(offresByCompte)}}
 {% block sort %}[0, 'asc'], [2, 'desc'], [9, 'desc']{% endblock %}
 {% block body %}
-    {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'}, 
+{{ dump(offresByCompte)}}
+    {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'},
                                 2:{'color':'warning',   'icon':'star'},
                                 3:{'color':'info',      'icon':'eye'},
                                 4:{'color':'muted',     'icon':'eye-slash'}
@@ -74,8 +74,7 @@
                                         {#<i class="fa fa-{{styleCandidature[offreCompte.candidature.etatCandidature.id].icon}}"></i>#}
                                         {{ offreCompte.candidature.etatCandidature }}
                                 </td>
-                            {% else %}
-                                <td/><td/><td/>
+
                             {% endif %}
                             <td style="border-left: thin solid grey"><b>{{ offreCompte.offre.entreprise.raisonSociale }}</b></td>
                             <td>{{ offreCompte.offre.entreprise.ville }}</td>
