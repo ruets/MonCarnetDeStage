@@ -10,9 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Route permettant a l'étudiant d'acceder au tableau de bord
+ **/
 #[Route('/etudiant/tableau_de_bord')]
 class TableauDeBordController extends AbstractController {
 
+    /**
+     * Route permettant a l'étudiant d'acceder au tableau de bord
+     **/
     #[Route('/', name: 'app_etudiant_tableau_de_bord_index', methods: ['GET'])]
     public function index(Security $security): Response {
         return $this->render('Tableau_de_bord/index.html.twig', [
@@ -20,6 +26,9 @@ class TableauDeBordController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant a l'étudiant d'acceder a la liste des offres de stage
+     **/
     #[Route('/show', name: 'app_etudiant_tableau_de_bord_show', methods: ['GET'])]
     public function show(OffreService $offreService, Security $security): Response {
         $compte=$security->getUser();
