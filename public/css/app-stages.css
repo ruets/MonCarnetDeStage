@@ -96,6 +96,10 @@ a.page-link {
 
 /* AJOUT CSS NAVBAR */
 
+a{
+  text-decoration: none !important;
+}
+
 *{
   margin: 0;
   padding: 0;

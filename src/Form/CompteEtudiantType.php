@@ -13,13 +13,12 @@ class CompteEtudiantType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
-                ->add('etudiant')
-                ->add('login')
-                ->add('role', ChoiceType::class, ["mapped" => false, "choices" => ["Etudiant·e" => "ROLE_ETUDIANT", "Administrateur" => "ROLE_ADMIN"]])
-                ->add('password', PasswordType::class)
-                ->add('parcours', ChoiceType::class, ["choices" => ["Indéfini" => "*", "Parcours A" => "A", "Parcours B" => "B"]])
-                ->add('etatRecherche')
-        ;
+                            ->add('etudiant')
+                            ->add('login')
+                            ->add('role', ChoiceType::class, ["mapped" => false, "choices" => ["Etudiant·e" => "ROLE_ETUDIANT", "Administrateur" => "ROLE_ADMIN"]])
+                            ->add('password', PasswordType::class)
+                            ->add('parcours', ChoiceType::class, ["choices" => ["Indéfini" => "*", "Parcours A" => "A", "Parcours B" => "B"]])
+                            ->add('etatRecherche');
     }
 
     public function configureOptions(OptionsResolver $resolver): void {
