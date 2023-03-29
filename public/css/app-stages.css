@@ -1,5 +1,4 @@
 body {
-    padding-top: 5rem;
     background-color: #fff;
 }
 
@@ -106,9 +105,9 @@ a.page-link {
 }
 .wrapper{
   background: #171c24;
-  position: fixed;
   width: 100%;
 }
+
 .wrapper nav{
   position: relative;
   display: flex;
@@ -134,6 +133,7 @@ nav .content .links{
 .content .links li{
   list-style: none;
   line-height: 70px;
+    text-decoration: none;
 }
 .content .links li a,
 .content .links li label{
