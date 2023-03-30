@@ -18,11 +18,50 @@
     <string-array name="etats_candidatures">
         <item>Candidature à envoyer</item>
         <item>En attente de réponse</item>
+        <item>Candidature refusée</item>
         <item>En attente de RDV</item>
         <item>Entretien à réaliser</item>
-        <item>Candidature refusée</item>
         <item>Candidature acceptée</item>
-        <item>Choix définitif</item>
     </string-array>
+
+    <string name="main_name">MainActivity</string>
+
+    <string name="synthese_name">Synthèse</string>
+    <string name="synthese_title">Synthèse :</string>
+    <string name="synthese_new">Nouvelles offres !</string>
+    <string name="synthese_candidatures"> candidatures :</string>
+    <string name="synthese_candidatures_pending"> candidatures en cours</string>
+    <string name="synthese_candidatures_refused"> candidatures refusées</string>
+    <string name="synthese_candidatures_accepted"> candidatures acceptées</string>
+    <string name="synthese_offres"> offres :</string>
+    <string name="synthese_offres_favorites"> offres en favoris</string>
+    <string name="synthese_offres_checked"> offres consultées</string>
+
+    <string name="offres_name">Offres</string>
+    <string name="offres_search">Rechercher</string>
+    <string name="offres_status">Statut de l\'offre : </string>
+    <string name="offres_entreprise">Entreprise : </string>
+    <string name="offres_address">Adresse : </string>
+    <string name="offres_details">Détails de l\'offre </string>
+    <string name="offres_candidate">Candidater</string>
+
+    <string name="candidatures_name">Candidatures</string>
+    <string name="candidatures_state">Etat : </string>
+    <string name="candidatures_todo">A faire : </string>
+    <string name="candidatures_date">Date : </string>
+    <string name="candidatures_finalize">Finaliser la candidature</string>
+    <string name="candidatures_modify">Modifier la candidature</string>
+    <string name="candidatures_choose">Choix définitif</string>
+    <string name="candidatures_save">Sauvegarder la candidature</string>
+    <string name="candidatures_delete">Supprimer la candidature</string>
+    <string name="candidatures_confirm">Vous êtes sur le point de choisir cette offre
+    comme choix définitif pour votre stage.
+
+    Par la suite, vous ne pourrez plus accéder à
+    l’interface de recherche de l’application.
+
+    Êtes-vous sûr de vouloir continuer ?</string>
+    <string name="candidatures_yes">Oui</string>
+    <string name="candidatures_no">Non</string>
 
 </resources>
