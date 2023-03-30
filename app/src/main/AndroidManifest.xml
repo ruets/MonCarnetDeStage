@@ -20,19 +20,9 @@
             android:name=".OffreActivity"
             android:exported="false" />
         <activity
-            android:name=".CandidatureEditActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".CandidatureActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/main_name" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -43,27 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ListOffresActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ListCandidaturesActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
