@@ -10,6 +10,8 @@ import java.util.HashMap;
 
 import fr.iut2.saeprojet.api.APIClient;
 import fr.iut2.saeprojet.api.APIService;
+import fr.iut2.saeprojet.api.ResultatAppel;
+import fr.iut2.saeprojet.entity.CompteEtudiant;
 
 public class StageAppActivity extends AppCompatActivity {
     protected APIService apiInterface = null;
@@ -17,6 +19,7 @@ public class StageAppActivity extends AppCompatActivity {
     public APIService getApiInterface() {
         return apiInterface;
     }
+    public CompteEtudiant etudiant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,19 @@ public class StageAppActivity extends AppCompatActivity {
 
         // Chargement de l'API
         apiInterface = APIClient.getAPIService();
+
+        // Chargement de l'étudiant
+        APIClient.getCompteEtudiant(this, getCompteId(), new ResultatAppel<CompteEtudiant>() {
+            @Override
+            public void traiterResultat(CompteEtudiant compteEtudiant) {
+                etudiant = compteEtudiant;
+            }
+
+            @Override
+            public void traiterErreur() {
+                etudiant = null;
+            }
+        });
     }
 
     private SharedPreferences getSharedPreferences() {
@@ -44,6 +60,10 @@ public class StageAppActivity extends AppCompatActivity {
 
     public String getCompte_Id() {
         return getSharedPreferences().getString(getString(R.string.login_id_path), "");
+    }
+
+    public CompteEtudiant getEtudiant() {
+        return etudiant;
     }
 
     protected void setCompteId(long id, String _id) {
