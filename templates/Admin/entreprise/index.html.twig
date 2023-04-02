@@ -5,7 +5,9 @@
 {% block body %}
     <h1>
         Entreprises
-        <a  class="btn btn-primary btn-sm" href="{{ path('app_entreprise_new') }}"><i class="fa fa-plus"></i> ajouter</a>
+        <div class="btn_ajouter" style="display: block ruby; text-align: center;"> 
+        <a  class="btn btn-primary btn-sm" href="{{ path('app_entreprise_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Ajouter une entreprise</a>
+        </div>
     </h1>
 
     <table class="MyDataTable  table table-striped table-sm table-hover small">

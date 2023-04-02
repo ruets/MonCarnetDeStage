@@ -8,64 +8,170 @@
                                 3:{'color':'info',      'icon':'spinner'},
                                 4:{'color':'success',   'icon':'check-square-o'}
                             } %}
+
+    {% set offreConsultees = comptes[0].offreConsultees.owner.offreConsultees %}
+    {% set candidatures = comptes[0].candidatures.owner.candidatures %}
+
+    {% set nbOffreConsultees = offreConsultees | length %}
+    {% set nbCandidatures = candidatures | length %}
+
+    
+
     <div class="card">
         <div class="card-header">
             <h4>
                 <i class="fa fa-tachometer"></i>
-                {{ isAdmin ? "Recherches de Stage" : comptes[0].etudiant.nom ~ " " ~ comptes[0].etudiant.prenom }}
+                {{ isAdmin ? "Recherches de Stage" : comptes[0].etudiant.nom ~ " " ~ comptes[0].etudiant.prenom ~ " | " ~ comptes[0].etudiant.email ~ " | numéro INE : " ~ comptes[0].etudiant.numeroINE ~ " | Parcours : " ~ comptes[0].parcours ~ " | Recherche : " ~ comptes[0].etatRecherche}}
             </h4>
         </div>
-        <div class="card-body">
-            <table class="MyDataTable table table-striped table-sm small text-left">
-                <thead class="table-dark">
-                    <tr>
-                        <th>NumeroINE</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Email</th>
-                        <th>Login</th>
-                        <th class="text-center">Parcours</th>
-                        <th class="text-center">Recherche</th>
-                        <th class="text-center">Consultées</th>
-                        <th class="text-center">Retenues</th>
-                        <th class="text-center">Candidatures</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for compte in comptes %}
-                        {% if "ROLE_ETUDIANT" in compte.roles %}
-                            <tr class="fluo" onclick="location = '{{ isAdmin ? path("app_admin_tableau_de_bord_show", {"id":compte.id}) : path("app_etudiant_tableau_de_bord_show") }}'">
-                                <td>{{ compte.etudiant.numeroINE }}</td>
-                                <td>{{ compte.etudiant.nom }}</td>
-                                <td>{{ compte.etudiant.prenom }}</td>
-                                <td><a onclick="event.stopPropagation();
-                                        location = 'mailto:{{ compte.etudiant.email }}'">{{ compte.etudiant.email }}</a></td>
-                                <td>{{ compte.login }}</td>
-                                <td class="text-center">{{ compte.parcours }}</td>
-                                <td  class="text-center" data-order="{{ compte.etatRecherche.id }}">
-                                    <span class="badge rounded-pill bg-{{styleRecherche[compte.etatRecherche.id].color}}"
-                                          style="width: 100%"
-                                          data-bs-toggle="tooltip" data-bs-title="{{ compte.etatRecherche.descriptif }}">
-                                        {# <i class="fa fa-{{styleRecherche[compte.etatRecherche.id].icon}}"></i> #}
-                                        {{ compte.etatRecherche.etat }}
-                                    </span>
-                                </td>
-                                <td class="text-center text-secondary">
-                                    <b>{{ compte.offreConsultees | length ? compte.offreConsultees | length : "" }}</b>
-                                </td>
-                                <td class="text-center text-info">
-                                    <b>{{ compte.offreRetenues | length ? compte.offreRetenues | length : "" }}</b>
-                                </td>
-                                <td class="text-center text-success">
-                                    <b>{{ compte.candidatures | length ? compte.candidatures | length : "" }}</b>
-                                </td>
-                            </tr>
-                        {% endif %}
-                    {% else %}
-                    <td colspan="10">Aucun Etudiant Inscrit</td>
+
+
+         
+            {% if isAdmin %}
+            <div class="card-body">
+                <table class="MyDataTable table table-striped table-sm small text-left">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>NumeroINE</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Login</th>
+                            <th class="text-center">Parcours</th>
+                            <th class="text-center">Recherche</th>
+                            <th class="text-center">Consultées</th>
+                            <th class="text-center">Retenues</th>
+                            <th class="text-center">Candidatures</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for compte in comptes %}
+                            {% if isAdmin %}
+                                <tr class="fluo" onclick="location = '{{ isAdmin ? path("app_admin_tableau_de_bord_show", {"id":compte.id}) : path("app_etudiant_tableau_de_bord") }}'">
+                                    <td>{{ compte.etudiant.numeroINE }}</td>
+                                    <td>{{ compte.etudiant.nom }}</td>
+                                    <td>{{ compte.etudiant.prenom }}</td>
+                                    <td><a onclick="event.stopPropagation();
+                                            location = 'mailto:{{ compte.etudiant.email }}'">{{ compte.etudiant.email }}</a></td>
+                                    <td>{{ compte.login }}</td>
+                                    <td class="text-center">{{ compte.parcours }}</td>
+                                    <td  class="text-center" data-order="{{ compte.etatRecherche.id }}">
+                                        <span class="badge rounded-pill bg-{{styleRecherche[compte.etatRecherche.id].color}}"
+                                            style="width: 100%"
+                                            data-bs-toggle="tooltip" data-bs-title="{{ compte.etatRecherche.descriptif }}">
+                                            {# <i class="fa fa-{{styleRecherche[compte.etatRecherche.id].icon}}"></i> #}
+                                            {{ compte.etatRecherche.etat }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <b>{{ compte.offreConsultees | length ? compte.offreConsultees | length : "" }}</b>
+                                    </td>
+                                    <td class="text-center text-info">
+                                        <b>{{ compte.offreRetenues | length ? compte.offreRetenues | length : "" }}</b>
+                                    </td>
+                                    <td class="text-center text-success">
+                                        <b>{{ compte.candidatures | length ? compte.candidatures | length : "" }}</b>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {% else %}
+                            <td colspan="10">Aucun Etudiant Inscrit</td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+     
+    </div>
+    {% else %}
+    
+<div class="contenu">
+        <div class="candidatures">
+            <h2>Candidatures {{nbCandidatures}}</h2>
+            {% if nbCandidatures > 0 %}
+             
+            <div class="list-offres">
+            {% for i in 0..nbCandidatures-1 %}
+                <div class="offre">
+                    <div class="ligne1-offre">
+                        <div class="stage">
+                            <span>{{candidatures[i].offre.intitule}}</span>
+                            <span>{{candidatures[i].offre.parcours }}</span>
+                        </div>
+                        <select>
+                            <option>À envoyer</option>
+                            <option>Attente réponse</option>
+                            <option>Refusée</option>
+                            <option>Attente RDV</option>
+                            <option>Attente entretien</option>
+                            <option>Acceptée</option>
+                        </select>
+                    </div>
+                    <div class="ligne2-offre">
+                        <span>{{candidatures[i].offre.entreprise.raisonSociale}} - {{candidatures[i].offre.entreprise.ville}}</span>
+                        <span data-order="{{ candidatures[i].offre.dateDepot ? candidatures[i].offre.dateDepot|date('Y-m-d') : '' }}">{{ candidatures[i].offre.dateDepot ? candidatures[i].offre.dateDepot|date('d/m/Y') : ''  }}</span>
+                    </div>
+                </div>
                 {% endfor %}
-                </tbody>
-            </table>
+            </div>
+            
+            {% else %}
+            <p>Pas de candidature</p>
+            <a href="{{ path("app_etudiant_tableau_de_bord_show") }}">
+                <button class="button-candidater">Voir les offres</button>
+            </a>
+            {% endif %}
+        </div>
+        <div class="consultees">
+            <h2>Offres consultées {{nbOffreConsultees}}</h2>
+            {% if nbOffreConsultees > 0 %}
+
+            <div class="list-offres">
+            {% for i in 0..nbOffreConsultees-1 %}
+                <div class="offre">
+                    <div class="ligne1-offre">
+                        <div class="stage">
+                            <span>{{offreConsultees[i].offre.intitule}}</span>
+                            <span>{{ offreConsultees[i].offre.parcours }}</span>
+                        </div>
+                        <a href="{{ offreConsultees[i].offre.urlPieceJointe }}">
+                            <button class="button-candidater">Candidater</button>
+                        </a>
+                        
+                    </div>
+                    <div class="ligne2-offre">
+                        <span>{{offreConsultees[i].offre.entreprise.raisonSociale}} - {{offreConsultees[i].offre.entreprise.ville}}</span>
+                        <span data-order="{{ offreConsultees[i].offre.dateDepot ? offreConsultees[i].offre.dateDepot|date('Y-m-d') : '' }}">{{ offreConsultees[i].offre.dateDepot ? offreConsultees[i].offre.dateDepot|date('d/m/Y') : ''  }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>Pas d'offre consultée</p>
+            <a href="{{ path("app_etudiant_tableau_de_bord_show") }}">
+                <button class="button-candidater">Voir les offres</button>
+            </a>
+            {% endif %}
+        </div>
+        <div class="favoris">
+            <h2>Offres favoris</h2>
+            <div class="list-offres">
+                <div class="offre">
+                    <div class="ligne1-offre">
+                        <div class="stage">
+                            <h2>Intitulé stage</h2>
+                            <span>Parcours</span>
+                        </div>
+                        <button class="button-candidater">Candidater</button>
+                    </div>
+                    <div class="ligne2-offre">
+                        <h3>Entreprise - Ville</h3>
+                        <span>date</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+
+    {% endif %}
 {% endblock %}

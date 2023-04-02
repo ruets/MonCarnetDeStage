@@ -23,6 +23,7 @@ class TableauDeBordController extends AbstractController {
     public function index(Security $security): Response {
         return $this->render('Tableau_de_bord/index.html.twig', [
                     'comptes' => [$security->getUser()],
+                   
         ]);
     }
 
@@ -37,5 +38,19 @@ class TableauDeBordController extends AbstractController {
             'offresByCompte' => $offreService->getOffreByCompte($compte),
         ]);
     }
+
+
+    #[Route('/show/offre{id}', name: 'app_etudiant_tableau_de_bord_show_offre', methods: ['GET'])]
+    public function offre($id,OffreService $offreService, Security $security): Response {
+        $compte=$security->getUser();
+        return $this->render('Tableau_de_bord/offre.html.twig', [
+            'compte' => $compte,
+            'offresByCompte' => $offreService->getOffreByCompte($compte),
+            'id' => $id
+        ]);
+    }
+    
+
+
 
 }

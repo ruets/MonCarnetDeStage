@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Etudiant;
 use App\Form\EtudiantType;
 use App\Repository\EtudiantRepository;
+use App\Repository\CompteEtudiantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,11 @@ class EtudiantController extends AbstractController
      * Route permettant a l'administrateur de visualiser tous les étudiants.
      **/
     #[Route('/', name: 'app_etudiant_index', methods: ['GET'])]
-    public function index(EtudiantRepository $etudiantRepository): Response
+    public function index(EtudiantRepository $etudiantRepository, CompteEtudiantRepository $compteEtudiantRepository): Response
     {
         return $this->render('Admin/etudiant/index.html.twig', [
             'etudiants' => $etudiantRepository->findAll(),
+            'comptes_etudiants' => $compteEtudiantRepository->findAll()
         ]);
     }
 

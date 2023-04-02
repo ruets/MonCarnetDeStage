@@ -4,8 +4,15 @@
 
 {% block body %}
     <h1>Offres de Stage
-        <a class="btn btn-primary btn-sm" href="{{ path('app_offre_new') }}"><i class="fa fa-plus"></i> ajouter</a>
+       
     </h1>
+    
+    <div class="btn_ajouter" style="display: block ruby; text-align: center;"> 
+    
+     <a class="btn btn-primary" href="{{ path('app_offre_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Ajouter une offre</a>
+    <a class="btn btn-primary" href="{{ path('app_offre_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Importer une offre en PDF</a>
+
+    </div>
 
     <table class="MyDataTable  table table-striped table-sm table-hover small">
         <thead class="table-dark">

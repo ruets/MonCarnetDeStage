@@ -1,112 +1,84 @@
 {% extends 'base.html.twig' %}
+{% block css %}
+
+{% endblock %}
+
+
 {% block title %}Offres par Etudiant{% endblock %}
 {% block sort %}[0, 'asc'], [2, 'desc'], [9, 'desc']{% endblock %}
 {% block body %}
-    {{ dump("WESH")}}
-    {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'}, 
-                                2:{'color':'warning',   'icon':'star'},
-                                3:{'color':'info',      'icon':'eye'},
-                                4:{'color':'muted',     'icon':'eye-slash'}
-                            } %}
-    {% set styleRecherche = {   1:{'color':'warning',   'icon':'exclamation-triangle'}, 
-                                2:{'color':'secondary', 'icon':'eye'},
-                                3:{'color':'info',      'icon':'spinner'},
-                                4:{'color':'success',   'icon':'check-square-o'}
-                            } %}
-    {% set styleCandidature = { 1:{'color':'warning',   'icon':'exclamation-triangle'}, 
-                                2:{'color':'secondary', 'icon':'clock-o'},
-                                3:{'color':'danger',    'icon':'ban'},
-                                4:{'color':'secondary', 'icon':'calendar-o'},
-                                5:{'color':'warning',   'icon':'calendar-o'},
-                                6:{'color':'success',   'icon':'check-square-o'}
-                            } %}
-    <div class="card">
-        <div class="card-header">
-            <h4>
-                <span class="badge rounded-pill bg-{{styleRecherche[compte.etatRecherche.id].color}}"
-                      data-bs-toggle="tooltip" data-bs-title="{{ compte.etatRecherche.descriptif }}">
-                    <i class="fa fa-{{styleRecherche[compte.etatRecherche.id].icon}}"></i> 
-                    {{ compte.etatRecherche.etat }}
+    {% set styleStatut =    {   1:{'color':'success',   'icon':'check-square-o'},
+        2:{'color':'warning',   'icon':'star'},
+        3:{'color':'info',      'icon':'eye'},
+        4:{'color':'muted',     'icon':'eye-slash'}
+    } %}
+    {% set styleRecherche = {   1:{'color':'warning',   'icon':'exclamation-triangle'},
+        2:{'color':'secondary', 'icon':'eye'},
+        3:{'color':'info',      'icon':'spinner'},
+        4:{'color':'success',   'icon':'check-square-o'}
+    } %}
+    {% set styleCandidature = { 1:{'color':'warning',   'icon':'exclamation-triangle'},
+        2:{'color':'secondary', 'icon':'clock-o'},
+        3:{'color':'danger',    'icon':'ban'},
+        4:{'color':'secondary', 'icon':'calendar-o'},
+        5:{'color':'warning',   'icon':'calendar-o'},
+        6:{'color':'success',   'icon':'check-square-o'}
+    } %}
+    
+
+
+    <div class="cards">
+    {% for offreCompte in offresByCompte %}
+    <div class="cartes">
+        <div class="partie1">
+
+            <div class="ligne1">
+                <div class="etat">
+                    {% if offreCompte.offre.etatOffre.id == 1 %}
+                        <div class="cercle" style="background: green;"></div>
+                    {% elseif offreCompte.offre.etatOffre.id == 2 %}
+                        <div class="cercle" style="background: orange;"></div>
+                    {% elseif offreCompte.offre.etatOffre.id == 3 %}
+                        <div class="cercle" style="background: red;"></div>
+                    {% endif %}
+                    <label for="">{{ offreCompte.offre.etatOffre.etat }}</label>
+                </div>
+
+
+                <span class="favoris">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                     <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                     </svg>
+                    <!-- pleine     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg> -->
                 </span>
-                    {{ compte.etudiant.prenom | capitalize }} <b>{{ compte.etudiant.nom | upper }}</b>
-                    - parcours <b>{{ compte.parcours }}</b>
-            </h4>
+            </div>
+            <h2>{{ offreCompte.offre.intitule }}</h2>
+
+            <div class="info">
+                <p class="company">{{ offreCompte.offre.entreprise.raisonSociale }}</p>
+                <p class="date">{{ offreCompte.offre.entreprise.ville }}</p>
+            </div>
+            <div class="info">
+                <p class="date"
+                   data-order="{{ offreCompte.offre.dateDepot ? offreCompte.offre.dateDepot|date('Y-m-d') : '' }}">{{ offreCompte.offre.dateDepot ? offreCompte.offre.dateDepot|date('d/m/Y') : '' }}</p>
+                <p class="date">{{ offreCompte.offre.parcours }}</p>
+            </div>
+
         </div>
-        <div class="card-body">
-            <table class="MyDataTable table table-striped table-sm table-hover small">
-                <thead class="table-dark">
-                    <tr>
-                        <th class="text-center" colspan="4">Candidatures Etudiant</th>
-                        <th class="text-center" colspan="9" style="border-left: thin solid grey">Offres de Stage</th>
-                    </tr>
-                    <tr>                
-                        <th>Vu</th>
-                        <th>Action</th>
-                        <th>Date</th>
-                        <th class="text-center">Etat</th>
-                        <th style="border-left: thin solid grey">Entreprise</th>
-                        <th>Ville</th>
-                        <th>Pays</th>
-                        <th style="width: 20%">Intitule</th>
-                        <th>Descriptif</th>
-                        <th>Date</th>
-                        <th class="text-center">Parcours</th>
-                        <th class="text-center">Url</th>
-                        <th class="text-center">Etat</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for offreCompte in offresByCompte %}
-                        <tr>
-                            <td class="text-center" data-order="{{ offreCompte.ordre }}"
-                                data-bs-toggle="tooltip" data-bs-title="{{ offreCompte.statut }}">
-                                <i class="fa fa-2x fa-{{styleStatut[offreCompte.ordre].icon}} text-{{styleStatut[offreCompte.ordre].color}}"></i>
-                            </td>
-                            {% if offreCompte.candidature %}
-                                <td>{{ offreCompte.candidature.typeAction }}</td>
-                                <td data-order="{{ offreCompte.candidature.dateAction ? offreCompte.candidature.dateAction | date('d/m/Y H:i') : "" }}">
-                                    {{ offreCompte.candidature.dateAction ? offreCompte.candidature.dateAction | date('d/m/Y H:i') : ""}}
-                                </td>
-                                <td>
-                                    <span class="badge rounded-pill bg-{{styleCandidature[offreCompte.candidature.etatCandidature.id].color}}"
-                                          style="width: 100%"
-                                          data-bs-toggle="tooltip" data-bs-title="{{ offreCompte.candidature.etatCandidature.descriptif }}">
-                                        {#<i class="fa fa-{{styleCandidature[offreCompte.candidature.etatCandidature.id].icon}}"></i>#}
-                                        {{ offreCompte.candidature.etatCandidature }}
-                                </td>
-                            {% else %}
-                                <td/><td/><td/>
-                            {% endif %}
-                            <td style="border-left: thin solid grey"><b>{{ offreCompte.offre.entreprise.raisonSociale }}</b></td>
-                            <td>{{ offreCompte.offre.entreprise.ville }}</td>
-                            <td>{{ offreCompte.offre.entreprise.pays }}</td>
-                            <td>{{ offreCompte.offre.intitule }}</td>
-                            <td>{{ offreCompte.offre.descriptif }}</td>
-                            <td data-order="{{ offreCompte.offre.dateDepot ? offreCompte.offre.dateDepot|date('Y-m-d') : '' }}">
-                                {{ offreCompte.offre.dateDepot ? offreCompte.offre.dateDepot|date('d/m/Y') : '' }}
-                            </td>
-                            <td class="text-center">{{ offreCompte.offre.parcours }}</td>
-                            <td class="text-center">
-                                {% if offreCompte.offre.urlPieceJointe %}
-                                    <a href="{{ offreCompte.offre.urlPieceJointe }}" target="_blank" class="btn btn-sm btn-primary">
-                                        <i class="fa fa-file-text-o"></i>
-                                    </a>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <span class="badge rounded-pill bg-{{offreCompte.offre.etatOffre.id==1 ? "success" : "danger" }}" 
-                                      style="width: 100%"
-                                      data-bs-toggle="tooltip" data-bs-title="{{ offreCompte.offre.etatOffre.descriptif }}">
-                                    {{ offreCompte.offre.etatOffre.etat }}
-                                </span>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="13">aucun enregistrement trouvé</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div></div>
+        
+        <div class="btn">
+            <a href="{{ path("app_etudiant_tableau_de_bord_show_offre", {"id":offreCompte.offre.id})}}">
+                <button class="seemore"> Voir l'offre</button>
+            </a>
+        </div>
+    
+
+    </div>
+    {% endfor %}
+    </div>
+
+
+   
 {% endblock %}

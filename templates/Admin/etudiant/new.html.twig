@@ -3,9 +3,9 @@
 {% block title %}Nouveau·elle Etudiant{% endblock %}
 
 {% block body %}
-    <h1>Ajouter Etudiant</h1>
+    <button onclick="window.history.back();" class="btn btn-primary top-0 start-0 m-3"><i class="fa fa-arrow-left"></i> Retour</button>
+    <h1 class="titre_a_centrer">Ajouter un Etudiant</h1>
 
     {{ include('Admin/etudiant/_form.html.twig') }}
-
-    <a href="{{ path('app_etudiant_index') }}" class="btn btn-secondary col-md-1">Retour Liste</a>
+    
 {% endblock %}

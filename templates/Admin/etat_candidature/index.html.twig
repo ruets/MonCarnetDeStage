@@ -5,7 +5,9 @@
 {% block body %}
     <h1>
         Etats d'une Candidature
-        <a class="btn btn-primary btn-sm" href="{{ path('app_etat_candidature_new') }}"><i class="fa fa-plus"></i> ajouter</a>
+        <div class="btn_ajouter" style="display: block ruby; text-align: center;"> 
+        <a class="btn btn-primary btn-sm" href="{{ path('app_etat_candidature_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Ajouter un état de candidature</a>
+        </div>
     </h1>
 
     <table class="MyDataTable  table table-striped table-sm table-hover small">

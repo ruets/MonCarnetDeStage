@@ -3,9 +3,9 @@
 {% block title %}Nouveau·elle Entreprise{% endblock %}
 
 {% block body %}
-    <h1>Ajouter Entreprise</h1>
+    <button onclick="window.history.back();" class="btn btn-primary top-0 start-0 m-3"><i class="fa fa-arrow-left"></i> Retour</button>
+    <h1 class="titre_a_centrer">Ajouter Entreprise</h1>
 
     {{ include('Admin/entreprise/_form.html.twig') }}
 
-    <a href="{{ path('app_entreprise_index') }}" class="btn btn-secondary col-md-1">Retour Liste</a>
 {% endblock %}

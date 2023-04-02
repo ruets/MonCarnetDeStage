@@ -1,59 +1,110 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="{{ path("app_default") }}">
+        &nbsp;<i class="fa fa-home"></i> Stages
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {% set entites_outils = {  
+        
+        "etat_offre":"fa fa-thermometer-0",
+        "etat_recherche":"fa fa-thermometer-2",
+        "etat_candidature":"fa fa-thermometer-4"}
+        
+    %}
 
-    {% block css %}
-        <link rel="stylesheet" href="{{ asset('css/app-stages.css') }}" type="text/css" media="all"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    {% endblock %}
+    {% set entities_etudiants = {
+            "etudiant":"fa fa-user",
+            "compte_etudiant":"fa fa-key",
+            "candidature":"fa fa-id-card-o"
+    }%}
 
+    {% set entities_offres = {
+            "offre":"fa fa-briefcase",
+            "offre_consultee":"fa fa-eye",
+            "offre_retenue":"fa fa-check-square-o"
+        }%}
 
-  
-  <div class="wrapper">
-    <nav>
-      <input type="checkbox" id="show-search">
-      <input type="checkbox" id="show-menu">
-      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
-      <div class="content">
-      <div class="logo"><a href="{{ path("app_default") }}">Carnet de Stage</a></div>
-        <ul class="links">
-
-          {% if is_granted('ROLE_ADMIN')%}
-          <li><a href="{{ path("app_admin_tableau_de_bord_index") }}">Tableau de Bord</a></li>
-          <li>
-            <a href="#" class="desktop-link">Outils</a>
-            <input type="checkbox" id="show-services">
-            <label for="show-services">Outils</label>
-            <ul>
-              <li><a href="{{ path("app_entreprise_index") }}">Entreprises</a></li>
-              <li><a href="{{ path("app_etat_offre_index") }}">Etat Offre</a></li>
-              <li><a href="{{ path("app_etat_recherche_index") }}">Etat recherche</a></li>
-              <li><a href="{{ path("app_etat_candidature_index") }}">Etat candidature</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#" class="desktop-link">Détails Étudiants</a>
-            <input type="checkbox" id="show-services">
-            <label for="show-services">Détails Étudiants</label>
-            <ul>
-              <li><a href="{{ path("app_compte_etudiant_index") }}">Comptes Etudiants</a></li>
-              <li><a href="{{ path("app_offre_retenue_index") }}">Offres Retenues</a></li>
-              <li><a href="{{ path("app_candidature_index") }}">Candidature</a></li>
-            </ul>
-          </li>
-          {% elseif is_granted('ROLE_ETUDIANT') %} 
-          <li><a href="{{ path("app_etudiant_tableau_de_bord_index") }}">Tableau de Bord</a></li>
-          {% endif %}
-           <li><a href="#">Offres de Stage</a></li>
-         
-          {% if app.user!=null %}
-          <li>Connecté: {{app.user.username}}</li>
-          <li><a href="#">Déconnexion</a></li>
-          {% endif %}
-          </ul>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            {% if  is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_admin_tableau_de_bord_index") }}">
+                        <i class="fa fa-tachometer"></i> Tableau de Bord
+                    </a>
+                </li>
+            {% elseif is_granted('ROLE_ETUDIANT') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_etudiant_tableau_de_bord_show") }}">
+                        <i class="fa fa-briefcase"></i> Offres de Stage
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_etudiant_tableau_de_bord_index") }}">
+                        <i class="fa fa-tachometer"></i> Tableau de Bord
+                    </a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cogs"></i> Gestion des étudiants
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                        {% for entite,icone in entities_etudiants %}
+                            {% if entite != "etudiant"%}
+                            <li>
+                                <a class="dropdown-item" href="{{ path("app_"~entite~"_index") }}">
+                                    <i class="{{icone}}"></i> {{ entite | replace ({"_":" "}) | capitalize }}
+                                </a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cogs"></i> Offres
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                        {% for entite,icone in entities_offres %}
+                            <li>
+                                <a class="dropdown-item" href="{{ path("app_"~entite~"_index") }}">
+                                    <i class="{{icone}}"></i> {{ entite | replace ({"_":" "}) | capitalize }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item">
+                     <a class="nav-link" href="{{ path("app_entreprise_index") }}">
+                        <i class="fa fa-university"></i> Entreprises
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-thermometer-0"></i> Outils d'administration
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                        {% for entite,icone in entites_outils %}
+                            <li>
+                                <a class="dropdown-item" href="{{ path("app_"~entite~"_index") }}">
+                                    <i class="{{icone}}"></i> {{ entite | replace ({"_":" "}) | capitalize }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                
+            {% endif %}
+            {% if app.user!=null %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_logout") }}">
+                        <i class="fa fa-sign-out"></i> Déconnexion
+                    </a>
+                </li>
+            {% endif %}
         </ul>
-      </div>
-      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-      <form action="#" class="search-box">
-        <input type="text" placeholder="Recherchez une entreprise, un mot-clé..." required>
-        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-      </form>
-    </nav>
-  </div>
+    </div>
+</nav>

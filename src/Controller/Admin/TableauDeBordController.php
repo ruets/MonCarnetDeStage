@@ -30,7 +30,7 @@ class TableauDeBordController extends AbstractController {
     public function show(OffreService $offreService, CompteEtudiant $compte): Response {
         
         return $this->render('Tableau_de_bord/show.html.twig', [
-                    'compte' => $compte,
+                    'comptes' => $compte,
             'offresByCompte' => $offreService->getOffreByCompte($compte),
         ]);
     }

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
-    <div class="card col-md-12 text-center">
+    {#<div class="card col-md-12 text-center">
         <div class="card-header">
-            <h1><i class="fa fa-home"></i> Back-Office de Gestion des Offres de Stage</h1>
+            <h1><i class="fa fa-home"></i> -Office de Gestion des Offres de Stage</h1>
         </div>
         <div class="card-body">
             <div class="card {{ not app.user ? "clickable" : "" }}"
@@ -21,5 +21,19 @@
                 </div>
             </div>
         </div>
+    </div>#}
+    <div class="container_default">
+      <div class="title_default">
+        <h1>Back-Office de Gestion des Offres de Stage</h1>
+        <div class="titre_flex"> 
+            {% if app.user == false %}
+                <button class="button_default" onclick="location = '{{path("app_login") }}'">Se connecter</button>
+        </div>
+            {% else %}
+                </div>
+                <h2>Bienvenue {{ app.user.etudiant.prenom }} {{ app.user.etudiant.nom | upper }} ({{ app.user.roles[0] | replace({'ROLE_':''}) | lower }})</h2>
+            {% endif %}
+            
+      </div>
     </div>
 {% endblock %}

@@ -5,10 +5,13 @@
 {% block body %}
     <h1>
         Comptes Etudiant 
-        <a class="btn btn-primary btn-sm" href="{{ path('app_compte_etudiant_new') }}"><i class="fa fa-plus"></i> ajouter</a>
+            <div class="btn_ajouter" style="display: block ruby; text-align: center;"> 
+        <a class="btn btn-primary btn-sm" href="{{ path('app_compte_etudiant_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Ajouter un compte étudiant</a>
+        <a class="btn btn-primary btn-sm" href="{{ path('app_etudiant_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Ajouter un étudiant</a>
+        </div> 
     </h1>
 
-    <table class="MyDataTable  table table-striped table-sm table-hover small">
+    {#}<table class="MyDataTable  table table-striped table-sm table-hover small">
         <thead class="table-dark">
             <tr>
                 <th>Id</th>
@@ -45,5 +48,48 @@
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
+    </table>#}
+    <table class="MyDataTable table table-striped table-sm table-hover small">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>INE</th>
+            <th>Login</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Rôle</th>
+            <th>Email</th>
+            <th>Parcours</th>
+            <th>Etat Recherche</th>
+            <th>Actions</th>
+            <th>Dernière Connexion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for compte_etudiant in compte_etudiants %}
+            {% set isAdmin =  compte_etudiant.roles[0]=='ROLE_ADMIN' %}
+            <tr class="{{isAdmin?'text-danger':''}}">
+                <td>{{ "%03d"|format(compte_etudiant.id) }}</td>
+                <td>{{ not isAdmin ? compte_etudiant.etudiant.numeroINE : ''}}</td>
+                <td>{{ compte_etudiant.login }}</td>
+                <td>{{ compte_etudiant.etudiant.nom }}</td>
+                <td>{{ compte_etudiant.etudiant.prenom }}</td>
+                <td>{{ compte_etudiant.roles ? compte_etudiant.roles[0] : '' }}</td>
+                <td>{{ compte_etudiant.etudiant.email }}</td>
+                <td>{{ not isAdmin ? compte_etudiant.parcours : ''}}</td>
+                <td>{{ not isAdmin ? compte_etudiant.etatRecherche.etat : ''}}</td>
+                <td>
+                    <a href="{{ path('app_compte_etudiant_show', {'id': compte_etudiant.id}) }}">voir</a>
+                    <a href="{{ path('app_compte_etudiant_edit', {'id': compte_etudiant.id}) }}">éditer</a>
+                </td>
+                <td>{{ compte_etudiant.derniereConnexion ? compte_etudiant.derniereConnexion|date('d/m/Y i:H') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

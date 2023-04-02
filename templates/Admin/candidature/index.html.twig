@@ -3,7 +3,10 @@
 {% block title %}Candidature index{% endblock %}
 
 {% block body %}
-    <h1>Candidatures <a class="btn btn-primary btn-sm" href="{{ path('app_candidature_new') }}"><i class="fa fa-plus"></i> ajouter</a></h1>
+    <h1>Candidatures 
+    <div class="btn_ajouter" style="display: block ruby; text-align: center;"> 
+    <a class="btn btn-primary btn-sm" href="{{ path('app_candidature_new') }}" style="padding:10px;"><i class="fa fa-plus"></i> Ajouter une candidature</a>
+    </div></h1>
 
     <table class="MyDataTable table table-striped table-sm table-hover small">
         <thead class="table-dark">

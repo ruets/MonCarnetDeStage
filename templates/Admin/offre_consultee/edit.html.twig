@@ -3,11 +3,10 @@
 {% block title %}Edit OffreConsultee{% endblock %}
 
 {% block body %}
+    <button onclick="window.history.back();" class="btn btn-primary top-0 start-0 m-3"><i class="fa fa-arrow-left"></i> Retour</button>
     <h1>Editer OffreConsultee</h1>
 
     {{ include('Admin/offre_consultee/_form.html.twig', {'button_label': 'Enregistrer'}) }}
-
-    <a href="{{ path('app_offre_consultee_index') }}" class="btn btn-secondary col-md-1">Retour Liste</a>
 
     {{ include('Admin/offre_consultee/_delete_form.html.twig') }}
 {% endblock %}
