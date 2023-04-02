@@ -1,5 +1,7 @@
 package fr.iut2.saeprojet.entity;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.Nullable;
@@ -21,4 +23,10 @@ public class EtatCandidature {
     public String descriptif;
     @SerializedName("candidatures")
     public List<String> candidatures;
+
+    @NonNull
+    @Override
+    public String toString() {
+        return etat;
+    }
 }

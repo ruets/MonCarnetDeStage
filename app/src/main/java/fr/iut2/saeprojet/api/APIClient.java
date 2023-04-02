@@ -17,6 +17,10 @@ import fr.iut2.saeprojet.entity.EtatOffresResponse;
 import fr.iut2.saeprojet.entity.EtatRecherche;
 import fr.iut2.saeprojet.entity.EtatRecherchesResponse;
 import fr.iut2.saeprojet.entity.Offre;
+import fr.iut2.saeprojet.entity.OffreConsultee;
+import fr.iut2.saeprojet.entity.OffreConsulteeRequest;
+import fr.iut2.saeprojet.entity.OffreRetenue;
+import fr.iut2.saeprojet.entity.OffreRetenueRequest;
 import fr.iut2.saeprojet.entity.OffresResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -30,7 +34,7 @@ public class APIClient {
     //https://square.github.io/retrofit/?utm_source=developer.android.com&utm_medium=referral
     //https://www.digitalocean.com/community/tutorials/retrofit-android-example-tutorial
 
-    private static final String BASE_URL = "http://10.0.2.2:8000/";
+    private static final String BASE_URL = "http://82.65.139.161:8000/";
 
     //
     private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -66,6 +70,28 @@ public class APIClient {
         Call<Offre> call = apiInterface.doGetOffre(getBearer(activity), id);
         APIClient.<Offre>doCall(call, cllbck);
     }
+
+    public static void createOffreRetenue(StageAppActivity activity, OffreRetenueRequest offreRetenue, ResultatAppel<OffreRetenue> cllbck) {
+        APIService apiInterface = activity.getApiInterface();
+
+        Call<OffreRetenue> call = apiInterface.doCreateOffreRetenue(getBearer(activity), offreRetenue);
+        APIClient.<OffreRetenue>doCall(call, cllbck);
+    }
+
+    public static void removeOffreRetenue(StageAppActivity activity, long id, ResultatAppel<OffreRetenue> cllbck) {
+        APIService apiInterface = activity.getApiInterface();
+
+        Call<OffreRetenue> call = apiInterface.doRemoveOffreRetenue(getBearer(activity), id);
+        APIClient.<OffreRetenue>doCall(call, cllbck);
+    }
+
+    public static void createOffreConsultee(StageAppActivity activity, OffreConsulteeRequest offreConsultee, ResultatAppel<OffreConsultee> cllbck) {
+        APIService apiInterface = activity.getApiInterface();
+
+        Call<OffreConsultee> call = apiInterface.doCreateOffreConsultee(getBearer(activity), offreConsultee);
+        APIClient.<OffreConsultee>doCall(call, cllbck);
+    }
+
     public static void getCandidatures(StageAppActivity activity, ResultatAppel<CandidaturesResponse> cllbck) {
         APIService apiInterface = activity.getApiInterface();
 

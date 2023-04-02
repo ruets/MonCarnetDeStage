@@ -1,5 +1,7 @@
 package fr.iut2.saeprojet.ui.synthese;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import fr.iut2.saeprojet.MainActivity;
+import fr.iut2.saeprojet.NewOffresActivity;
 import fr.iut2.saeprojet.R;
 import fr.iut2.saeprojet.api.APIClient;
 import fr.iut2.saeprojet.api.ResultatAppel;
@@ -46,13 +49,11 @@ public class SyntheseFragment extends Fragment {
         return root;
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-
 
     private void init() {
         newOffres = binding.syntheseNew;
@@ -73,7 +74,8 @@ public class SyntheseFragment extends Fragment {
         newOffres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Intent intent = new Intent(mainActivity, NewOffresActivity.class);
+                startActivity(intent);
             }
         });
 

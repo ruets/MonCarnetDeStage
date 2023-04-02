@@ -1,5 +1,6 @@
 package fr.iut2.saeprojet.ui.offres;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -101,7 +102,8 @@ public class OffresFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mainActivity, OffreActivity.class);
-                            intent.putExtra("offre", offre);
+                            intent.putExtra(OffreActivity.OFFRE_KEY, offre);
+                            intent.putExtra(OffreActivity.ETUDIANT_KEY, mainActivity.getEtudiant());
                             startActivity(intent);
                         }
                     });

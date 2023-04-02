@@ -38,29 +38,29 @@
     <string name="synthese_offres_checked"> offres consultées</string>
 
     <string name="offres_name">Offres</string>
+    <string name="offres_title">Titre de l\'offre</string>
     <string name="offres_search">Rechercher</string>
     <string name="offres_status">Statut de l\'offre : </string>
     <string name="offres_entreprise">Entreprise : </string>
-    <string name="offres_address">Adresse : </string>
+    <string name="offres_address">Ville : </string>
     <string name="offres_details">Détails de l\'offre </string>
     <string name="offres_candidate">Candidater</string>
 
     <string name="candidatures_name">Candidatures</string>
     <string name="candidatures_state">Etat : </string>
     <string name="candidatures_todo">A faire : </string>
-    <string name="candidatures_date">Date : </string>
+    <string name="candidatures_date">Pour le : </string>
     <string name="candidatures_finalize">Finaliser la candidature</string>
     <string name="candidatures_modify">Modifier la candidature</string>
-    <string name="candidatures_choose">Choix définitif</string>
+    <string name="candidatures_choose">Choisir cette offre</string>
     <string name="candidatures_save">Sauvegarder la candidature</string>
     <string name="candidatures_delete">Supprimer la candidature</string>
-    <string name="candidatures_confirm">Vous êtes sur le point de choisir cette offre
-    comme choix définitif pour votre stage.
-
-    Par la suite, vous ne pourrez plus accéder à
-    l’interface de recherche de l’application.
-
-    Êtes-vous sûr de vouloir continuer ?</string>
+    <string name="candidatures_confirm_accept">Vous êtes sur le point de choisir cette offre comme choix définitif pour votre stage.\n\n
+        Par la suite, vous ne pourrez plus accéder à l’interface de recherche de l’application.\n\n
+        Êtes-vous sûr de vouloir continuer ?</string>
+    <string name="candidatures_confirm_delete">Vous êtes sur le point de supprimer votre candidature pour cette offre.\n\n
+        Par conséquent, vos données seront perdues et vous devrez refaire les procédures.\n\n
+        Êtes-vous sûr de vouloir continuer ?</string>
     <string name="candidatures_yes">Oui</string>
     <string name="candidatures_no">Non</string>
 

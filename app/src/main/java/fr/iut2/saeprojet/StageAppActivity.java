@@ -14,6 +14,7 @@ import fr.iut2.saeprojet.api.ResultatAppel;
 import fr.iut2.saeprojet.entity.CompteEtudiant;
 
 public class StageAppActivity extends AppCompatActivity {
+    public static final String ETUDIANT_KEY = "etudiant_key";
     protected APIService apiInterface = null;
 
     public APIService getApiInterface() {
@@ -28,18 +29,22 @@ public class StageAppActivity extends AppCompatActivity {
         // Chargement de l'API
         apiInterface = APIClient.getAPIService();
 
-        // Chargement de l'étudiant
-        APIClient.getCompteEtudiant(this, getCompteId(), new ResultatAppel<CompteEtudiant>() {
-            @Override
-            public void traiterResultat(CompteEtudiant compteEtudiant) {
-                etudiant = compteEtudiant;
-            }
+        if (getIntent().getParcelableExtra(ETUDIANT_KEY) != null) {
+            etudiant = getIntent().getParcelableExtra(ETUDIANT_KEY);
+        } else {
+            // Chargement de l'étudiant
+            APIClient.getCompteEtudiant(this, getCompteId(), new ResultatAppel<CompteEtudiant>() {
+                @Override
+                public void traiterResultat(CompteEtudiant compteEtudiant) {
+                    etudiant = compteEtudiant;
+                }
 
-            @Override
-            public void traiterErreur() {
-                etudiant = null;
-            }
-        });
+                @Override
+                public void traiterErreur() {
+                    etudiant = null;
+                }
+            });
+        }
     }
 
     private SharedPreferences getSharedPreferences() {
