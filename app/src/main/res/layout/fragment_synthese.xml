@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.synthese.SyntheseFragment"
+    android:gravity="center_horizontal" >
+
+    <TextView
+        android:id="@+id/synthese_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/synthese_title"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_gravity="left"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="30dp" />
+
+    <LinearLayout
+        android:id="@+id/synthese_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/rounded_border"
+        android:elevation="10dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="25dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/newspaper" />
+
+        <TextView
+            android:id="@+id/synthese_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_new" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_chevron" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/synthese_candidatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/rounded_border"
+        android:elevation="10dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="25dp">
+
+        <TextView
+            android:id="@+id/synthese_candidatures_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_candidatures" />
+
+        <TextView
+            android:id="@+id/synthese_candidatures_pending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_candidatures_pending"
+            android:paddingStart="25dp"/>
+
+        <TextView
+            android:id="@+id/synthese_candidatures_refused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_candidatures_refused"
+            android:paddingStart="25dp"/>
+
+        <TextView
+            android:id="@+id/synthese_candidatures_accepted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_candidatures_accepted"
+            android:paddingStart="25dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/synthese_offres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/rounded_border"
+        android:elevation="10dp"
+        android:layout_marginHorizontal="25dp">
+
+        <TextView
+            android:id="@+id/synthese_offres_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_offres" />
+
+        <TextView
+            android:id="@+id/synthese_offres_favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_offres_favorites"
+            android:paddingStart="25dp"/>
+
+        <TextView
+            android:id="@+id/synthese_offres_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/synthese_offres_checked"
+            android:paddingStart="25dp"/>
+    </LinearLayout>
+
+</LinearLayout>

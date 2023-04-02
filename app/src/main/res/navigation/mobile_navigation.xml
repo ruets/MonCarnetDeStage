@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_synthese">
+
+    <fragment
+        android:id="@+id/navigation_synthese"
+        android:name="fr.iut2.saeprojet.ui.synthese.SyntheseFragment"
+        android:label="@string/synthese_name"
+        tools:layout="@layout/fragment_synthese" />
+
+    <fragment
+        android:id="@+id/navigation_offres"
+        android:name="fr.iut2.saeprojet.ui.offres.OffresFragment"
+        android:label="@string/offres_name"
+        tools:layout="@layout/fragment_offres" />
+
+    <fragment
+        android:id="@+id/navigation_candidatures"
+        android:name="fr.iut2.saeprojet.ui.candidatures.CandidaturesFragment"
+        android:label="@string/candidatures_name"
+        tools:layout="@layout/fragment_candidatures" />
+</navigation>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".OffreActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/candidature_offre_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/offres_title"
+            android:textSize="18dp" />
+
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingVertical="50dp">
+
+        <TextView
+            android:id="@+id/candidature_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/candidatures_state"
+            android:layout_marginVertical="25dp"/>
+
+        <TextView
+            android:id="@+id/candidature_todo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/candidatures_todo"
+            android:layout_marginVertical="25dp"/>
+
+        <TextView
+            android:id="@+id/candidature_todo_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/candidatures_date"
+            android:layout_marginVertical="25dp"/>
+
+        <Button
+            android:id="@+id/candidature_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/candidatures_modify"
+            android:layout_gravity="center"
+            android:layout_marginTop="75dp"/>
+
+        <Button
+            android:id="@+id/candidature_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/candidatures_delete"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">SaeProjet</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">S\'authentifier</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="token_key">token key</string>
+    <string name="login_key">login key</string>
+    <string name="login_id_key">login id key</string>
+    <string name="login_id_path">login id path</string>
+    <string name="offre_url">www.offre.net</string>
+    <string name="country_prompt">Choose a country</string>
+
+    <string-array name="etats_candidatures">
+        <item>Candidature à envoyer</item>
+        <item>En attente de réponse</item>
+        <item>Candidature refusée</item>
+        <item>En attente de RDV</item>
+        <item>Entretien à réaliser</item>
+        <item>Candidature acceptée</item>
+    </string-array>
+
+    <string name="main_name">MainActivity</string>
+
+    <string name="synthese_name">Synthèse</string>
+    <string name="synthese_title">Synthèse :</string>
+    <string name="synthese_new">Nouvelles offres !</string>
+    <string name="synthese_candidatures"> candidatures :</string>
+    <string name="synthese_candidatures_pending"> candidatures en cours</string>
+    <string name="synthese_candidatures_refused"> candidatures refusées</string>
+    <string name="synthese_candidatures_accepted"> candidatures acceptées</string>
+    <string name="synthese_offres"> offres :</string>
+    <string name="synthese_offres_favorites"> offres en favoris</string>
+    <string name="synthese_offres_checked"> offres consultées</string>
+
+    <string name="offres_name">Offres</string>
+    <string name="offres_title">Titre de l\'offre</string>
+    <string name="offres_search">Rechercher</string>
+    <string name="offres_status">Statut de l\'offre : </string>
+    <string name="offres_entreprise">Entreprise : </string>
+    <string name="offres_address">Ville : </string>
+    <string name="offres_details">Détails de l\'offre </string>
+    <string name="offres_candidate">Candidater</string>
+
+    <string name="candidatures_name">Candidatures</string>
+    <string name="candidatures_state">Etat : </string>
+    <string name="candidatures_todo">A faire : </string>
+    <string name="candidatures_date">Pour le : </string>
+    <string name="candidatures_finalize">Finaliser la candidature</string>
+    <string name="candidatures_modify">Modifier la candidature</string>
+    <string name="candidatures_choose">Choisir cette offre</string>
+    <string name="candidatures_save">Sauvegarder la candidature</string>
+    <string name="candidatures_delete">Supprimer la candidature</string>
+    <string name="candidatures_confirm_accept">Vous êtes sur le point de choisir cette offre comme choix définitif pour votre stage.\n\n
+        Par la suite, vous ne pourrez plus accéder à l’interface de recherche de l’application.\n\n
+        Êtes-vous sûr de vouloir continuer ?</string>
+    <string name="candidatures_confirm_delete">Vous êtes sur le point de supprimer votre candidature pour cette offre.\n\n
+        Par conséquent, vos données seront perdues et vous devrez refaire les procédures.\n\n
+        Êtes-vous sûr de vouloir continuer ?</string>
+    <string name="candidatures_yes">Oui</string>
+    <string name="candidatures_no">Non</string>
+
+</resources>
