@@ -3,6 +3,7 @@
 {% block title %}Offre{% endblock %}
 
 {% block body %}
+    <button onclick="window.history.back();" class="btn btn-primary top-0 start-0 m-3"><i class="fa fa-arrow-left"></i> Retour</button>
     <h1 style="display: flex; justify-content: center;">Offre</h1>
 
     <table class="table">
@@ -37,8 +38,6 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_offre_index') }}" class="btn btn-secondary col-md-1">Retour Liste</a>
 
     <a href="{{ path('app_offre_edit', {'id': offre.id}) }}" class="btn btn-primary col-md-1">Editer</a>
 
