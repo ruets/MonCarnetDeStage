@@ -8,6 +8,11 @@ $filename = [];
 $size = -1;
 $fileContent = '';
 
+$raison_sociale_entreprise = '';
+$adresse = '';
+$description = '';
+$motsCles = '';
+
 
 if(isset($_POST['submit'])) {
    $filename = $_FILES['file']['name'];
@@ -23,43 +28,26 @@ if(isset($_POST['submit'])) {
         $fileContent = $pdfFile->getText();
 
         $fileContent = preg_replace("(\t)", "", $fileContent);
-        $fileContent = preg_replace('(\r\n+|\r+|\n+)', "\n", $fileContent);
+        $fileContent = str_replace('Lieu du stage (si différent de l’adresse', "", $fileContent);
+        $fileContent = str_replace('précédente) :', "", $fileContent);
 
-        $fileContent = str_replace("Entreprise/Laboratoire : ", "", $fileContent);
+        $fileContent = preg_replace('(\r\n+|\r+|\n+)', "", $fileContent);
         $fileContent = str_replace("Proposition d’offre de stage", "", $fileContent);
-        $fileContent = str_replace("Adresse :", "", $fileContent);
-        $fileContent = str_replace("Missions principales", "", $fileContent);
 
         $fileContent = str_replace("(Stage d’une durée minimale de 10 semaines avec gratification obligatoire) ", "", $fileContent);
+        $fileContent = str_replace("Entreprise/Laboratoire :", "", $fileContent);
 
-        $array = preg_split('(\n+)', $fileContent);
+        $traitement = explode("Adresse :", $fileContent);
+        $raison_sociale_entreprise = $traitement[0];
 
+        $traitementAdresse = explode("Missions principales", $traitement[1]);
+        $adresse = $traitementAdresse[0];
 
-        for($i=1;$i<sizeof($array);$i++) {
-            $match = preg_match("/^[1-9]\d{4}$/", $array[$i]);
-            if($match && $i >1) {
-                $array[$i-1] = $array[$i-1] . $array[$i];
-                unset($array[$i]);
-            }
+        $traitementMissions = explode(" Outils informatiques (Langages, système d’exploitation, etc)", $traitementAdresse[1]);
+        $description = $traitementMissions[0];
 
-
-
-            if($array[$i] == ' ') {
-                unset($array[$i]);
-            }
-
-        }
-        $array = array_values($array);
-
-        print_r($array);
-        $raison_sociale_entreprise = $array[1];
-        $adresse = $array[2];
-        $intitule = $array[6];
-        $motscles = $array[8];
-
-        $motscles = str_replace('et', "", $motscles);
-
-        $description = $array[13] . $array[14] . $array[15] . $array[16] . $array[17];
+        $traitementMotsCles = explode("Profil candidat recherché", $traitementMissions[1]);
+        $motsCles = $traitementMotsCles[0];
 
     } catch (Exception $e) {
         print('error');
@@ -67,9 +55,7 @@ if(isset($_POST['submit'])) {
 
 }
 
-
 ?>
-
 <form enctype="multipart/form-data" method="POST">
     <input name="file" type="file"  />
     <button type="submit" name="submit">Submit</button>
@@ -86,8 +72,8 @@ if(isset($_POST['submit'])) {
     <h1>Fiche d'offre</h1>
     <p>Nom de l'entreprise : <?= $raison_sociale_entreprise ?></p>
     <p>Adresse : <?= $adresse?></p>
-    <p>Intitulé : <?= $intitule ?> </p>
-    <p>Mots-clés : <?= $motscles ?> </p>
+    <p>Intitulé : Stage développement </p>
+    <p>Mots-clés : <?= $motsCles ?> </p>
     <p>Description : <?= $description ?> </p>
 
 </form>
